@@ -30,9 +30,13 @@ export class AppComponent implements OnInit {
         alert(`Cidade ${id} excluida com sucesso `);
         this.consultar();
       });
-}
+  }
 
-atualizar(cidade: any) {
-  alert(JSON.stringify(cidade));
-}
+  atualizar(cidade: any) {
+    this.cidadeService.atualizar(cidade)
+      .then(() => {
+        alert(`Cidade ${cidade.nome} atualizada com sucesso!`);
+        this.consultar();
+      });
+  }
 }
