@@ -11,11 +11,17 @@ export class AppComponent implements OnInit {
 
   constructor(private cidadeService: CidadeService) { }
   ngOnInit(): void {
+    this.consultar();
+  }
+  consultar() {
     this.cidadeService.consultar()
       .then(dados => this.cidades = dados);
   }
   adicionar(nome: string) {
-    alert(nome);
+    this.cidadeService.adicionar({ nome })
+      .then(cidade => {
+        this.consultar();
+      });
   }
 
   excluir(id: number) {
